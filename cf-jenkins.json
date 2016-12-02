@@ -33,7 +33,7 @@
     "SecurityGroupIds": [
      "sg-d73a84ae"
     ],
-    "IamInstanceProfile": "aj-test",
+    "IamInstanceProfile": "ajstack",
     "BlockDeviceMappings" : [{
       "DeviceName" : "/dev/xvda",
       "Ebs" : { "VolumeSize" : "8" }
