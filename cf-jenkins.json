@@ -1,0 +1,61 @@
+{
+"AWSTemplateFormatVersion": "2010-09-09",
+"Description": "venicegeo-devops-dev-lime-project, uses vanilla Amazon Linux AMI (ami-7172b611)",
+
+"Mappings": {
+  "EC2RegionMap": {
+   "us-west-2": {"craiggoami": "ami-7172b611"}
+  }
+},
+"Parameters" : {
+ "instancetype" : {
+  "Type" : "String"
+ }
+},
+"Resources": {
+  "Server": {
+   "Type": "AWS::EC2::Instance",
+   "Properties": {
+    "Tags" : [{
+     "Key":"Name",
+     "Value":"craigJ"
+    }],
+    "ImageId": {
+     "Fn::FindInMap": [
+      "EC2RegionMap", {
+       "Ref": "AWS::Region"
+      },
+      "craiggoami"
+     ]
+    },
+    "InstanceType": {"Ref" : "instancetype"},
+    "KeyName":  "craigradiantblueoregon" ,
+    "SecurityGroupIds": [
+     "sg-07efab7e"
+    ],
+    "IamInstanceProfile": "craigtest",
+    "BlockDeviceMappings" : [{
+      "DeviceName" : "/dev/xvda",
+      "Ebs" : { "VolumeSize" : "8" }
+    }],
+    "UserData": {"Fn::Base64": {"Fn::Join": ["",
+     [
+"#!/bin/bash -ex\n",
+"yum install git -y\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user; git clone https://github.com/craigwongva/lime.git > /tmp/u01 2>&1 '\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-jenkins > /tmp/u03d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-nexus-only > /tmp/u04d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-grails-green > /tmp/u05d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-sonar > /tmp/u06d 2>&1'\n"
+     ]
+    ]}}
+   }
+  }
+},
+"Outputs" : {
+  "InstanceID" : {
+    "Description": "The Instance ID",  
+    "Value" : { "Fn::GetAtt" : [ "Server" , "PublicIp" ] }
+  }
+}
+}

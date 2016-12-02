@@ -1,0 +1,41 @@
+export TMP=/tmp/jenkins
+wget http://pkg.jenkins-ci.org/redhat/jenkins-1.653-1.1.noarch.rpm &> $TMP-1000
+sudo rpm -ivh jenkins-1.653-1.1.noarch.rpm                         &> $TMP-1100
+sudo yum install jenkins-1.653-1.1                                 &> $TMP-1200
+sudo service jenkins start                                         &> $TMP-1300
+sleep 3m                                                           &> $TMP-1350
+wget localhost:8080/jnlpJars/jenkins-cli.jar                       &> $TMP-1400
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin github               &> $TMP-1700
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin job-dsl              &> $TMP-1800
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin workflow-aggregator  &> $TMP-1900
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin groovy               &> $TMP-2000
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin credentials-binding  &> $TMP-2100
+java -jar jenkins-cli.jar -s http://localhost:8080 install-plugin pipeline-stage-view  &> $TMP-2200
+#-->manually add a Maven "M1"
+#-->manually add a Groovy "G1"
+sudo service jenkins stop                                          &> $TMP-2400
+sudo service jenkins start                                         &> $TMP-2500
+sleep 3m                                                           &> $TMP-2600
+java -jar jenkins-cli.jar -s http://localhost:8080 create-job mypipe < mypipe.xml      &> $TMP-2950
+
+
+####
+## Install PCF CLI
+####
+
+wget "https://cli.run.pivotal.io/stable?release=linux64-binary&version=6.21.1&source=github-rel" -O foo &> $TMP-3000
+tar zxvf foo #creates the executable “cf”                         &> $TMP-3100
+rm foo                                                            &> $TMP-3200
+chmod 755 cf                                                      &> $TMP-3300
+sudo cp ./cf /cf                                                  &> $TMP-3400
+
+####
+## for Jenkins' Maven
+####
+sudo yum install java-1.8.0-openjdk-devel -y                      &> $TMP-4000
+export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk                  &> $TMP-4100
+
+####
+## for Jenkins' SES email
+####
+sudo pip install boto3
