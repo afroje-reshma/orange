@@ -4,7 +4,7 @@
 
 "Mappings": {
   "EC2RegionMap": {
-   "us-west-2": {"aj-stack": "ami-5ec1673e"}
+   "us-west-2": {"ajstack": "ami-5ec1673e"}
   }
 },
 "Parameters" : {
@@ -18,14 +18,14 @@
    "Properties": {
     "Tags" : [{
      "Key":"Name",
-     "Value":"aj-stack"
+     "Value":"ajstack"
     }],
     "ImageId": {
      "Fn::FindInMap": [
       "EC2RegionMap", {
        "Ref": "AWS::Region"
       },
-      "aj-stack"
+      "ajstack"
      ]
     },
     "InstanceType": {"Ref" : "instancetype"},
