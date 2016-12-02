@@ -1,10 +1,10 @@
 {
 "AWSTemplateFormatVersion": "2010-09-09",
-"Description": "venicegeo-devops-dev-lime-project, uses vanilla Amazon Linux AMI (ami-7172b611)",
+"Description": "venicegeo-devops-dev-orange-project, uses vanilla Amazon Linux AMI (ami-7172b611)",
 
 "Mappings": {
   "EC2RegionMap": {
-   "us-west-2": {"craiggoami": "ami-7172b611"}
+   "us-west-2": {"aj-stack": "ami-5ec1673e"}
   }
 },
 "Parameters" : {
@@ -18,22 +18,22 @@
    "Properties": {
     "Tags" : [{
      "Key":"Name",
-     "Value":"craigJ"
+     "Value":"aj-stack"
     }],
     "ImageId": {
      "Fn::FindInMap": [
       "EC2RegionMap", {
        "Ref": "AWS::Region"
       },
-      "craiggoami"
+      "aj-stack"
      ]
     },
     "InstanceType": {"Ref" : "instancetype"},
-    "KeyName":  "craigradiantblueoregon" ,
+    "KeyName":  "akey-initial" ,
     "SecurityGroupIds": [
-     "sg-07efab7e"
+     "sg-d73a84ae"
     ],
-    "IamInstanceProfile": "craigtest",
+    "IamInstanceProfile": "aj-test",
     "BlockDeviceMappings" : [{
       "DeviceName" : "/dev/xvda",
       "Ebs" : { "VolumeSize" : "8" }
@@ -42,11 +42,11 @@
      [
 "#!/bin/bash -ex\n",
 "yum install git -y\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user; git clone https://github.com/craigwongva/lime.git > /tmp/u01 2>&1 '\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-jenkins > /tmp/u03d 2>&1'\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-nexus-only > /tmp/u04d 2>&1'\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-grails-green > /tmp/u05d 2>&1'\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/lime; ./userdata-sonar > /tmp/u06d 2>&1'\n"
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; git clone https://github.com/afroje-reshma/orange.git > /tmp/u01 2>&1 '\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-jenkins > /tmp/u03d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-nexus-only > /tmp/u04d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-grails-green > /tmp/u05d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-sonar > /tmp/u06d 2>&1'\n"
      ]
     ]}}
    }
