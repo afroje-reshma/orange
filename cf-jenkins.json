@@ -4,7 +4,7 @@
 
 "Mappings": {
   "EC2RegionMap": {
-   "us-west-2": {"ajstack": "ami-5ec1673e"}
+   "us-west-2": {"craiggoami": "ami-7172b611"}
   }
 },
 "Parameters" : {
@@ -18,22 +18,22 @@
    "Properties": {
     "Tags" : [{
      "Key":"Name",
-     "Value":"ajstack"
+     "Value":"craigJ"
     }],
     "ImageId": {
      "Fn::FindInMap": [
       "EC2RegionMap", {
        "Ref": "AWS::Region"
       },
-      "ajstack"
+      "craiggoami"
      ]
     },
     "InstanceType": {"Ref" : "instancetype"},
-    "KeyName":  "akey-initial" ,
+    "KeyName":  "new-key" ,
     "SecurityGroupIds": [
-     "sg-d73a84ae"
+     "sg-8d744ff4"
     ],
-    "IamInstanceProfile": "ajstack",
+    "IamInstanceProfile": "craigtest",
     "BlockDeviceMappings" : [{
       "DeviceName" : "/dev/xvda",
       "Ebs" : { "VolumeSize" : "8" }
@@ -42,11 +42,11 @@
      [
 "#!/bin/bash -ex\n",
 "yum install git -y\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; git clone https://github.com/afroje-reshma/orange.git > /tmp/u01 2>&1 '\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-jenkins > /tmp/u03d 2>&1'\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-nexus-only > /tmp/u04d 2>&1'\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-grails-green > /tmp/u05d 2>&1'\n",
-"sudo -u ec2-user bash -c 'cd /home/ec2-user/cf-jenkins-cw/orange; ./userdata-sonar > /tmp/u06d 2>&1'\n"
+"sudo -u ec2-user bash -c 'cd /home/ec2-user; git clone https://github.com/afroje-reshma/orange.git > /tmp/u01 2>&1 '\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/orange; ./userdata-jenkins > /tmp/u03d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/orange; ./userdata-nexus-only > /tmp/u04d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/orange; ./userdata-grails-green > /tmp/u05d 2>&1'\n",
+"sudo -u ec2-user bash -c 'cd /home/ec2-user/orange; ./userdata-sonar > /tmp/u06d 2>&1'\n"
      ]
     ]}}
    }
