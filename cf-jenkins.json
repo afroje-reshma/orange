@@ -29,9 +29,9 @@
      ]
     },
     "InstanceType": {"Ref" : "instancetype"},
-    "KeyName":  "new-key" ,
+    "KeyName":  "craigradiantblueoregon",
     "SecurityGroupIds": [
-     "sg-8d744ff4"
+    "sg-07efab7e" 
     ],
     "IamInstanceProfile": "craigtest",
     "BlockDeviceMappings" : [{
