@@ -4,7 +4,7 @@
 
 "Mappings": {
   "EC2RegionMap": {
-   "us-west-2": {"craiggoami": "ami-7172b611"}
+   "us-west-2": {"afrojestack1": "ami-7172b611"}
   }
 },
 "Parameters" : {
@@ -25,15 +25,15 @@
       "EC2RegionMap", {
        "Ref": "AWS::Region"
       },
-      "craiggoami"
+      "afrojestack1"
      ]
     },
     "InstanceType": {"Ref" : "instancetype"},
-    "KeyName":  "craigradiantblueoregon",
+    "KeyName":  "new-key",
     "SecurityGroupIds": [
-    "sg-07efab7e" 
+    "sg-d989afa3" 
     ],
-    "IamInstanceProfile": "craigtest",
+    "IamInstanceProfile": "afroje-cfstack",
     "BlockDeviceMappings" : [{
       "DeviceName" : "/dev/xvda",
       "Ebs" : { "VolumeSize" : "8" }
