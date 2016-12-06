@@ -13,7 +13,7 @@
  }
 },
 "Resources": {
-  "Server": {
+  "EC2Instance": {
    "Type": "AWS::EC2::Instance",
    "Properties": {
     "Tags" : [{
@@ -55,7 +55,7 @@
 "Outputs" : {
   "InstanceID" : {
     "Description": "The Instance ID",  
-    "Value" : { "Fn::GetAtt" : [ "Server" , "PublicIp" ] }
+    "Value" : { "Fn::GetAtt" : [ "EC2Instance" , "PublicIp" ] }
   }
 }
 }
