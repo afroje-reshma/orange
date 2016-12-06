@@ -4,7 +4,7 @@
 
 "Mappings": {
   "EC2RegionMap": {
-   "us-west-2": {"afrojestack1": "ami-7172b611"}
+   "us-west-2": {"afrojestack1": "ami-b73b63a0"}
   }
 },
 "Parameters" : {
