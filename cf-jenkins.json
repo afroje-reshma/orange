@@ -4,7 +4,7 @@
 
 "Mappings": {
   "EC2RegionMap": {
-   "us-west-2": {"afrojestack1": "ami-b73b63a0"}
+   "us-west-2": {"afrojestack1": "ami-5ec1673e"}
   }
 },
 "Parameters" : {
@@ -31,7 +31,7 @@
     "InstanceType": {"Ref" : "instancetype"},
     "KeyName":  "new-key",
     "SecurityGroupIds": [
-    "sg-d989afa3" 
+    "sg-8d744ff4" 
     ],
     "IamInstanceProfile": "afroje-cfstack",
     "BlockDeviceMappings" : [{
